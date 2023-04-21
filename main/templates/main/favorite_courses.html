@@ -1,0 +1,30 @@
+{% extends 'main/navigation.html' %}
+{% block content %}
+    <div class="features">
+        <h1>{{ name }}</h1>
+    {% if favorite_courses == 0 %}
+        <p>{{ description }}</p>
+    {% else %}
+    <div style="background-image: url('../../static/main/img/back.jpg'); margin-top: 4vw; border-radius: 4vw">
+    {% for el in favorite_courses %}
+            <div style="display: inline-block; margin-left: 4vw">
+            <div class="card">
+                    <img src="../../static/main/img/4470588.jpg" alt="Avatar" style="width:14.8vw;">
+                    <div class="container">
+                    <h5 style="height: 1.6vw; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden;"><b>{{ el.name }}</b></h5>
+                    <p style="display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; font-size: 1vw">{{ el.description }}</p>
+                    {% if author.id == el.id_author_id and name == 'Мои курсы' %}
+                        <a href="{% url 'update' pk=el.id idx=1 %}"><button style="margin-top: -1vw" type="button" class="btn btn-outline-primary">Изменить</button></a>
+                        <a href="{% url 'delete_check' pk=el.id idx=4 %}"><button style="margin-top: -1vw" type="button" class="btn btn-outline-danger">Удалить</button> </a>
+                    {% else %}
+                        <a href="{% url 'course' pk=el.id %}"><button style="margin-top: -1vw; font-size: 0.9vw" type="button" class="btn btn-outline-primary">Читать далее</button></a>
+                    {% endif %}
+                    </div>
+            </div>
+            </div>
+    {% endfor %}
+    </div>
+    {% endif %}
+    </div>
+
+{% endblock %}

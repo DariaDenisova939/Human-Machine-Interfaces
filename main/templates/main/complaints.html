@@ -1,0 +1,14 @@
+{% extends 'main/navigation.html' %}
+{% block content %}
+    <div class="features">
+    <h1>Жалоба</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.complaint }}
+        <label style="visibility: hidden">
+            <input type="hidden" value="{{ pk }}" {{ form.id_course }} />
+        </label>
+        <button type="submit" class="btn btn-outline-primary"> Отправить </button>
+    </form>
+    </div>
+{% endblock %}

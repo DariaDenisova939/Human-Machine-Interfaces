@@ -1,0 +1,144 @@
+{% extends 'main/navigation.html' %}
+{% block content %}
+    <div class="features">
+        {% if user.is_superuser %}
+            <h1>Профиль администратора</h1>
+            {% if count == 0 %}
+                <p>У вас пока нет заявок на авторство</p>
+            {% else %}
+            <p>У вас накопились заявки на авторство: {{ count }}</p>
+            {% endif %}
+            <div style="background-image: url('../../static/main/img/back.jpg'); width: 75vw; margin-top: 4vw; border-radius: 4vw">
+            <div align="center" class="cards">
+            <div style="height: 15vw; width: 14.5vw; margin-left: -6vw" class="card">
+                <a href="{% url 'output' idx=3 %}">
+                <img src="../../static/main/img/notific.jpg" alt="Avatar" style="width:12.1vw">
+                </a>
+                <div class="container">
+                <h4><b>Заявки</b></h4>
+                <p>на авторство</p>
+                </div>
+            </div>
+            <div style="height: 15vw" class="card">
+                <a href="{% url 'output' idx=0 %}">
+                <img src="../../static/main/img/author_img.jpg" alt="Avatar" style="width:9vw">
+                </a>
+                <div class="container">
+                <h4><b>Авторы</b></h4>
+                <p>редактирование</p>
+                </div>
+            </div>
+            <div style="height: 15vw" class="card">
+                <a href="{% url 'admin' %}">
+                <img src="../../static/main/img/img.png" alt="Avatar" style="width:10.1vw">
+                </a>
+                <div class="container">
+                <h4><b>База данных</b></h4>
+                <p>управление</p>
+                </div>
+            </div><br>
+            <div style="height: 15vw;" class="card">
+                <a href="{% url 'output' idx=4 %}">
+                <img src="../../static/main/img/5391465.jpg" alt="Avatar" style="width:12.5vw; height: 8.8vw">
+                </a>
+                <div class="container">
+                <h4><b>Жалобы</b></h4>
+                <p>на курсы</p>
+                </div>
+            </div><br>
+            </div>
+        {% endif %}
+        {% if rol == 'author' %}
+            <h1>Профиль автора</h1>
+            <div style="background-image: url('../../static/main/img/back.jpg'); width: 75vw; margin-top: 4vw; border-radius: 4vw">
+            <div align="center" class="cards">
+            <div class="card">
+                <a href="{% url 'create' idx=2 pk=author.id %}">
+                <img src="../../static/main/img/20943650.jpg" alt="Avatar" style="width:8.5vw">
+                </a>
+                <div class="container">
+                <h4><b>Опубликовать</b></h4>
+                <p>курс</p>
+                </div>
+            </div>
+            <div class="card">
+                <a href="{% url 'output_author_course' %}">
+                <img src="../../static/main/img/20944386.jpg" alt="Avatar" style="width:12.5vw">
+                </a>
+                <div class="container">
+                <h4><b>Мои курсы</b></h4>
+                <p>управление</p>
+                </div>
+            </div>
+            <div class="card">
+                <a href="{% url 'update' idx=2 pk=author.id %}">
+                <img src="../../static/main/img/20945443.jpg" alt="Avatar" style="width:8.3vw">
+                </a>
+                <div class="container">
+                <h4><b>ФИО</b></h4>
+                <p>изменить</p>
+                </div>
+            </div><br>
+            </div>
+            </div>
+            <div class="card" style="width: 72rem; margin-top: 1vw;">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item"><h1>Правила для авторов</h1></li>
+        <li class="list-group-item">Запрещается нецензурная лексика.</li>
+        <li class="list-group-item">Тема курсов должна быть связана с IT сферой.</li>
+        <li class="list-group-item">Курсы должны нести образовательный характер.</li>
+        <li style="color: red" class="list-group-item">За нарушение вышеперечисленных правил администратор может лишить вас авторства или удалить статью</li>
+      </ul>
+    </div>
+        {% endif %}
+    {% if rol == 'user' %}
+            <h1>Профиль</h1>
+            <div style="background-image: url('../../static/main/img/back.jpg'); width: 75vw; margin-top: 4vw; border-radius: 4vw">
+            <div align="center" class="cards">
+            <div class="card">
+                <a href="{% url 'create' idx=3 pk=0 %}">
+                <img src="../../static/main/img/7064.jpg" alt="Avatar" style="width:14.9vw">
+                </a>
+                <div class="container">
+                <h4><b>Авторство</b></h4>
+                <p>стать автором</p>
+                </div>
+            </div>
+            <div class="card">
+                <a href="{% url 'output_favorite_course' %}">
+                <img src="../../static/main/img/2005.jpg" alt="Avatar" style="width:12vw">
+                </a>
+                <div class="container">
+                <h4><b>Избранные курсы</b></h4>
+                <p>я прохожу</p>
+                </div>
+            </div>
+            <div class="card">
+                <a href="{% url 'output_course' %}">
+                <img src="../../static/main/img/20944118.jpg" alt="Avatar" style="width:14.9vw">
+                </a><br>
+                <div class="container">
+                <h4><b>Все курсы</b></h4>
+                <p>смотреть</p>
+                </div>
+            </div><br>
+            </div>
+        </div>
+    <div class="card" style="width: 72rem; margin-top: 1vw;">
+            <h4>Пометка для пользователя</h4>
+              <div class="card-body">
+                  <p>К сожалению, на данном сайте нет редактуры, поэтому просим вас, оставлять жалобу на курсы,
+                      если заметили нарушение правил для авторов нашего сайта. С правилами можно ознакомиться ниже</p>
+              </div>
+            </div><br>
+        <div class="card" style="width: 72rem; margin-top: -4vw;">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item"><h1>Правила для авторов</h1></li>
+        <li class="list-group-item">Запрещается нецензурная лексика.</li>
+        <li class="list-group-item">Тема курсов должна быть связана с IT сферой.</li>
+        <li class="list-group-item">Курсы должны нести образовательный характер.</li>
+      </ul>
+    </div>
+    {% endif %}
+    </div>
+{% endblock %}

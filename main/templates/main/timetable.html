@@ -1,0 +1,35 @@
+{% extends 'main/navigation.html' %}
+{% block content %}
+    <div class="features">
+        <h1>Расписание</h1>
+    {% if t_table == 0 %}
+    <p>У вас не составлено расписание</p>
+    {% else %}
+    <table class="table" align="center">
+        <thead class="table-dark">
+        <tr>
+          <th scope="col">Название курса</th>
+          <th scope="col" align="center">Дата начала</th>
+          <th scope="col" align="center">Дата окончания</th>
+          <th scope="col" align="center">Опции</th>
+          </tr>
+        </thead>
+        {% for el in t_table %}
+            <tr>
+                <td>{{ el.name }}</td>
+                <td>{{ el.start_date }}</td>
+                <td>{{ el.end_date }}</td>
+                <td> <a href="{% url 'update' pk=el.id idx=3 %}"><button type="button" class="btn btn-outline-primary">Изменить</button></a>
+                    <a href="{% url 'delete_check' pk=el.id idx=5 %}"><button type="button" class="btn btn-outline-danger">Удалить</button></a>
+                </td>
+             </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+    <a href="{% url 'create' pk=0 idx=4 %}"><button style="margin-top: -1vw; font-size: 0.9vw" type="button" class="btn btn-outline-success">Дедлайн
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+                            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"></path>
+                            </svg></button> </a>
+    </div>
+
+{% endblock %}

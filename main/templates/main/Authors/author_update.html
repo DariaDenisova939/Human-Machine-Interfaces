@@ -1,0 +1,16 @@
+{% extends 'main/navigation.html' %}
+{% block content %}
+    <div class="features">
+    <h1>Изменение ФИО</h1>
+    <form method="post">
+        {% csrf_token %}
+        <p>{{ form.name }}</p>
+        <p>{{ form.surname }}</p>
+        <p>{{ form.patronymic }}</p>
+        <label style="visibility: hidden">
+            <input type="hidden" value="{{ pk }}" {{ form.id_user }} />
+        </label>
+        <button type="submit" class="btn btn-outline-primary"> {{ operation }} </button>
+    </form>
+    </div>
+{% endblock %}

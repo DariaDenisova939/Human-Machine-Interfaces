@@ -1,0 +1,35 @@
+{% extends 'main/navigation.html' %}
+{% block content %}
+    <div class="features">
+        <h1>{{ name }}</h1><br>
+            <div class="card" style="width: 76vw; margin-top: -5.5vw;">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+                <div style="float: left">
+                <img src="../../static/main/img/copyright.png" alt="Avatar" style="width:3vw;">
+                <i>
+                {{ obj_author.surname }}
+                {{ obj_author.name }}
+                {{ obj_author.patronymic }}
+                    {% if user.is_superuser %}
+                    <a href="{% url 'delete_check' pk=obj_author.id idx=2 %}"><button style="margin-top: 0.1vw;" type="button" class="btn btn-outline-danger">Лишить авторства</button></a>
+                    <a href="{% url 'delete_check' pk=obj_course.id idx=1 %}"><button style="margin-top: 0.1vw;" type="button" class="btn btn-outline-danger">Удалить курс</button></a>
+                    {% endif %}
+                </i>
+                </div>
+                <a href="{% url 'create' idx=1 pk=obj_course.id %}"><button style="margin-top: 0.2vw; float: right;" type="button" class="btn btn-outline-danger">Оставить жалобу</button></a>
+                {% if flag == True %}
+                <a href="{% url 'create_favorite_course' pk=obj_course.id %}" ><button style="margin-top: 0.2vw; float: right;  margin-right: 1vw" type="button" class="btn btn-outline-success">Добавить в избранное</button></a>
+                {% else %}
+                    <button style="margin-top: 0.2vw; float: right;  margin-right: 1vw" type="button" class="btn btn-outline-secondary" disabled>Уже в избранном</button>
+                {% endif %}
+            </li>
+                <li class="list-group-item"><p>{{ obj_course.description }}</p></li>
+          </ul>
+          <div class="card-body">
+              <h4>{{ obj_course.header }}</h4>
+              <p>{{ obj_course.main_text|linebreaksbr }}</p>
+          </div>
+            </div><br>
+    </div>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'main/navigation.html' %}
+{% block content %}
+    <div class="features">
+    <h1>Курс</h1>
+    <form method="post">
+        {% csrf_token %}
+        <p>{{ form.name }}</p>
+        <p>{{ form.header }}</p>
+        <p>{{ form.description }}</p>
+        <p>{{ form.main_text }}</p>
+        <label style="visibility: hidden"></p>
+            <input type="hidden" value="{{ pk }}" {{ form.id_author }} />
+        </label>
+        <button type="submit" class="btn btn-outline-primary"> {{ operation }} </button>
+    </form>
+    </div>
+{% endblock %}

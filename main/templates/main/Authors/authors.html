@@ -1,0 +1,29 @@
+{% extends 'main/navigation.html' %}
+{% block content %}
+    <div class="features">
+        <h1>{{ name }}</h1>
+        <table class="table" align="center">
+        <thead class="table-dark">
+        <tr>
+          <th scope="col">id Пользователя</th>
+          <th scope="col" align="center">Имя</th>
+          <th scope="col" align="center">Фамилия</th>
+          <th scope="col" align="center">Отчество</th>
+          <th scope="col" align="center">Опции</th>
+          </tr>
+        </thead>
+        {% for el in attributes %}
+            <tr>
+                <td>{{ el.id_user }}</td>
+                <td>{{ el.name }}</td>
+                <td>{{ el.surname }}</td>
+                <td>{{ el.patronymic }}</td>
+                <td> <a href="{% url 'update' pk=el.id idx=0 %}"><button type="button" class="btn btn-outline-primary">Изменить</button></a>
+                    <a href="{% url 'delete_check' pk=el.id idx=0 %}"><button type="button" class="btn btn-outline-danger">Удалить</button></a>
+                </td>
+             </tr>
+        {% endfor %}
+        </table>
+        <a href="{% url 'create' idx=0 pk=0 %}"><button type="button" class="btn btn-outline-primary">Добавить</button></a>
+    </div>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'main/navigation.html' %}
+{% block content %}
+    <div class="features">
+        <h1>{{ name }}</h1><br>
+        {% if count_complaints == 0 %}
+            <p>У вас нет новых жалоб</p>
+        {% endif %}
+        {% for el in attributes %}
+            <div class="card" style="width: 40rem; margin-top: -1vw; margin-left: 15vw">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">{{ el.complaint }}</li>
+          </ul>
+          <div class="card-body">
+            <a href="{% url 'course' pk=el.id_course_id %}" ><button type="button" class="btn btn-outline-primary">Перейти к курсу</button></a>
+            <a href="{% url 'complaint' pk=el.id %}" ><button type="button" class="btn btn-outline-success">Рассмотрено</button></a>
+          </div>
+            </div><br>
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'main/navigation.html' %}
+{% block content %}
+    <div class="features">
+    <h1>Заявка на авторство</h1>
+        {% if user_message == 0 %}
+    <form style="margin-left: 30%; width: 500px; margin-top: 50px;" method="post">
+        {% csrf_token %}
+        <p>{{ form.name }}</p>
+        <p>{{ form.surname }}</p>
+        <p>{{ form.patronymic }}</p>
+        <p>{{ form.purpose }}</p>
+        <label style="visibility: hidden">
+            <input type="hidden" value="{{ user.id }}" {{ form.id_user }} />
+        </label>
+        <button type="submit" class="btn btn-outline-primary"> Отправить </button>
+    </form>
+    {% else %}
+    <p>{{ user_message }}</p>
+    {% endif %}
+    </div>
+{% endblock %}

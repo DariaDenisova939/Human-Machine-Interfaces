@@ -1,0 +1,24 @@
+{% extends 'main/navigation.html' %}
+{% block content %}
+    <div class="features">
+        <h1>{{ name }}</h1><br>
+        {% if count == 0 %}
+            <p>У вас пока нет заявок на авторство</p>
+        {% endif %}
+        {% for el in attributes %}
+            <div class="card" style="width: 40rem; margin-top: -1vw; margin-left: 15vw">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+                {{ el.surname }}
+                {{ el.name }}
+                {{ el.patronymic }}</li>
+                <li class="list-group-item">{{ el.purpose }}</li>
+          </ul>
+          <div class="card-body">
+            <a href="{% url 'authorship' flag=True pk=el.id_user_id %}" ><button type="button" class="btn btn-outline-success">Разрешить</button></a>
+            <a href="{% url 'authorship' flag=False pk=el.id_user_id %}"><button type="button" class="btn btn-outline-danger">Отклонить</button></a>
+          </div>
+            </div><br>
+        {% endfor %}
+    </div>
+{% endblock %}

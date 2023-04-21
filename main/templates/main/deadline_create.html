@@ -1,0 +1,16 @@
+{% extends 'main/navigation.html' %}
+{% block content %}
+    <div class="features">
+    <h1>Дедлайн</h1>
+    <form method="post">
+        {% csrf_token %}
+        <p>{{ form.name }}</p>
+        <p>{{ form.start_date }}</p>
+        <p>{{ form.end_date }}</p>
+        <label style="visibility: hidden">
+            <input type="hidden" value="{{ user.id }}" {{ form.id_user }} />
+        </label>
+        <button style="margin-left: -5vw" type="submit" class="btn btn-outline-primary"> {{ operation }} </button>
+    </form>
+    </div>
+{% endblock %}

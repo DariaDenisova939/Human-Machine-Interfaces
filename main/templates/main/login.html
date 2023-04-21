@@ -1,0 +1,17 @@
+{% extends 'main/navigation.html' %}
+{% block content %}
+    <div class="features">
+    <h1>Вход</h1>
+    <form class="register" method="post">
+        {% csrf_token %}
+            <div class="form-error">{{ form.non_field_errors }} </div>
+        {% for el in form %}
+            <div class="register">
+            <p style="margin-left: -5vw; float: left;"> {{ el.label }} </p> <p style="overflow-y: hidden;">{{ el }} </p>
+            <div class="form-error">{{ el.errors }}</div>
+            </div>
+        {% endfor %}
+        <button style="margin-right: 2vw;" class="btn btn-primary" type="submit"> Войти </button>
+    </form>
+    </div>
+{% endblock %}
